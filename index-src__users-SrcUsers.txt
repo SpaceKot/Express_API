@@ -1,0 +1,139 @@
+//"start": "npx nodemon src/app.js --exec \"npm run node && lint\""
+
+
+//index.js
+
+import express, { Request, Response, NextFunction } from 'express';
+import { userRouter } from './users/users.js'
+
+const port = 8000;
+const app = express();
+
+
+
+app.use((req, res, next) => {
+    console.log('Время  ', Date.now());
+    next();
+});
+
+
+app.get('/hello', (req, res) => {
+    /*
+    res.cookie('token', 'sdfsdfs', {
+        domain: '',
+        path: '/',
+        secure: true,
+        expires: 600000
+    });
+
+    res.clearCookie('token');
+
+    res.send('Привет!');
+    */
+    throw new Error('Error!!!');
+})
+
+app.use('/users', userRouter);
+
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log(err.message);
+    res.status(500).send(err.message);
+});
+
+
+app.listen(port, () => {
+    console.log(`Сервер запущен на http://localhost:${port}`);
+});
+
+
+
+//
+//
+//users.js
+import express from 'express';
+
+const userRouter = express.Router();
+
+userRouter.use((req, res, next) => {
+    console.log('Обработчик users');
+    next();
+});
+
+
+userRouter.post('/login', (req, res) => {
+    res.send('login')
+});
+
+userRouter.post('/register', (req, res) => {
+    res.send('register');
+});
+
+
+export { userRouter }; 
+
+
+
+
+/////////////////////////////////
+//app.ts
+
+@injectable()
+export class App {
+  app: Express;
+  server: Server;
+  port: number;
+  ....
+  //logger: ILogger;
+  //userController: UserController;
+  //exceptionFilter: ExceptionFilter;
+  ....
+
+  constructor(
+    @inject(TYPES.ILogger) private logger: ILogger,
+    @inject(TYPES.UserController) private userController: UserController,
+    @inject(TYPES.ExceptionFilter) private exceptionFilter: ExceptionFilter,
+    ....
+    //userController: UserController,
+    //exceptionFilter: ExceptionFilter
+    ....
+  ) {
+    this.app = express();
+    this.port = 8000;
+    ....
+    //this.logger = logger;
+    //this.userController = userController;
+    //this.exceptionFilter = this.exceptionFilter;
+    ....
+  }
+
+  useRoutes(): void {
+    this.app.use('/users', this.userController.router);
+  }
+
+  useExceptionFilters(): void {
+    this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
+  }
+
+  public async init(): Promise<void> {
+    this.useRoutes();
+    this.server = this.app.listen(this.port);
+    this.logger.log(`Сервер запущен на http://localhost:${this.port}`);
+  }
+}
+
+
+
+
+
+
+////////main.ts
+.......
+// bootstrap()
+//   .then(({ app }) => {
+//     console.log('Application started successfully');
+//   })
+//   .catch((error) => {
+//     console.error('Failed to start application:', error);
+//     process.exit(1);
+//   });
