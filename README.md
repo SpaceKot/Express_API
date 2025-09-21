@@ -1,4 +1,4 @@
-# 🎨 NodeJs Project Portfolio 
+# 🎨 Node.js Project Portfolio 
 
 #### 📜 Certification
 [Stepik_Certificate](https://stepik.org/cert/2931850?lang=en)
