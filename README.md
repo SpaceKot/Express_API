@@ -17,7 +17,7 @@ Project completed as part of **"Node.js - from scratch, basics and building appl
 
 | Project                  | Technologies                             | Key Skills   
 |--------------------------|------------------------------------------|----------------------------------------------------------------| 
-| **Express API**    | Node.js, Express, TypeScript, InversifyJS, Prisma, npm | Layer Architecture, Dependency Injection, JWT Authentication, Unit Testing, E2E Testing  |
+| **Express API**    | Node.js, Express, TypeScript, InversifyJS, Prisma, npm | Layer Architecture, DI, JWT Authentication, Unit Testing, E2E Testing  |
                                                                                            
 ---
 
