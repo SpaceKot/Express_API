@@ -10,7 +10,6 @@
 ### 📚 Course Project Overview
 
 Project completed as part of **"Node.js - from scratch, basics and building application architec"**
-by Anton Larichev on Stepik
 
 ---
 
